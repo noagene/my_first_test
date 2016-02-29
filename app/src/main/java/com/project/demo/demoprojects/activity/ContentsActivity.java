@@ -39,6 +39,9 @@ public class ContentsActivity extends AppCompatActivity {
                 Constructor<?> constructor = cls.getConstructor();
                 Object obj = constructor.newInstance(new Object[] {});
 
+//                if (getIntent().getBooleanExtra("show_toolbar", true) == false) {
+//                    toolbar.setVisibility(View.GONE);
+//                }
                 setTitle(cls.getSimpleName());
                 switchContent((Fragment)obj, false, fragmentName);
             } catch (Exception e) {
@@ -54,10 +57,6 @@ public class ContentsActivity extends AppCompatActivity {
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        if(isAnimation) {
-//            transaction.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out, R.anim.slide_left_in, R.anim.slide_right_out);
-        }
 
         transaction.replace(R.id.layout_content, contentFragment, fragmentName);
         transaction.commit();
