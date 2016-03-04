@@ -14,7 +14,7 @@ import com.project.demo.demoprojects.DemoModel;
 import com.project.demo.demoprojects.DemoProject;
 import com.project.demo.demoprojects.R;
 import com.project.demo.demoprojects.adapter.No2PagerWithRecyclerViewAdapter;
-import com.project.demo.demoprojects.library.clicklistener.RecyclerViewItemClickManager;
+import com.project.demo.demoprojects.library.recyclerview.RecyclerViewItemClickManager;
 
 import java.util.List;
 

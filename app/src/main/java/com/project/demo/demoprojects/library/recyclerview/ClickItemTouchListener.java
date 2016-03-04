@@ -1,4 +1,4 @@
-package com.project.demo.demoprojects.library.clicklistener;
+package com.project.demo.demoprojects.library.recyclerview;
 
 import android.content.Context;
 import android.os.Build;

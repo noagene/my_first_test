@@ -1,4 +1,4 @@
-package com.project.demo.demoprojects.library.clicklistener;
+package com.project.demo.demoprojects.library.recyclerview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.HapticFeedbackConstants;

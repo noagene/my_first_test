@@ -9,21 +9,26 @@ import android.widget.TextView;
 
 import com.project.demo.demoprojects.DemoModel;
 import com.project.demo.demoprojects.R;
+import com.project.demo.demoprojects.library.recyclerview.HeaderRecyclerViewAdapter;
 
 import java.util.List;
 
 /**
  * Created by Kimsj on 2016. 2. 11..
  */
-public class No1RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class No1RecyclerViewAdapter extends HeaderRecyclerViewAdapter<RecyclerView.ViewHolder> {
 
     private List<DemoModel> items;
+    private boolean useHeader = false;
+    private boolean useFooter = false;
 
-    public No1RecyclerViewAdapter(List<DemoModel> items) {
+    public No1RecyclerViewAdapter(List<DemoModel> items, boolean useHeader, boolean useFooter) {
         this.items = items;
+        this.useHeader = useHeader;
+        this.useFooter = useFooter;
     }
 
-    @Override
+    /*@Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case 0:
@@ -68,7 +73,7 @@ public class No1RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemCount() {
         return items.size();
-    }
+    }*/
 
     public Object getItem(int position) {
         if (items == null || items.size() <= position) {
@@ -99,4 +104,87 @@ public class No1RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             dateTime = (TextView) itemView.findViewById(R.id.txt_date_time);
         }
     }
+
+
+
+
+    @Override
+    public boolean useHeader() {
+        return useHeader;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindHeaderView(RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public boolean useFooter() {
+        return useFooter;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateFooterViewHolder(ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindFooterView(RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateBasicItemViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case 0:
+                return new NormalViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listrow_item, parent, false));
+            case 1:
+                return new WideViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listrow_item_wide, parent, false));
+        }
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listrow_item, parent, false);
+        return new NormalViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindBasicItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+        DemoModel model = items.get(position);
+        if (getBasicItemViewType(position) == 0) {
+            ((NormalViewHolder) holder).label.setText(model.label);
+            String dateStr = DateUtils.formatDateTime(
+                    ((NormalViewHolder) holder).label.getContext(),
+                    model.dateTime.getTime(),
+                    DateUtils.FORMAT_ABBREV_ALL);
+            ((NormalViewHolder) holder).dateTime.setText(dateStr);
+        } else {
+            ((WideViewHolder) holder).label.setText(model.label);
+            String dateStr = DateUtils.formatDateTime(
+                    ((WideViewHolder) holder).label.getContext(),
+                    model.dateTime.getTime(),
+                    DateUtils.FORMAT_ABBREV_ALL);
+            ((WideViewHolder) holder).dateTime.setText(dateStr);
+        }
+    }
+
+    @Override
+    public int getBasicItemCount() {
+        return items.size();
+    }
+
+    @Override
+    public int getBasicItemViewType(int position) {
+        if (items != null) {
+            return items.get(position).cellType;
+        }
+
+        return super.getItemViewType(position);
+    }
+
+
+
+
 }

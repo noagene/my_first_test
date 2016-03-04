@@ -17,7 +17,7 @@ import com.project.demo.demoprojects.DemoProject;
 import com.project.demo.demoprojects.R;
 import com.project.demo.demoprojects.activity.DetailActivity;
 import com.project.demo.demoprojects.adapter.No1RecyclerViewAdapter;
-import com.project.demo.demoprojects.library.clicklistener.RecyclerViewItemClickManager;
+import com.project.demo.demoprojects.library.recyclerview.RecyclerViewItemClickManager;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class No1RecyclerViewFragment extends Fragment implements RecyclerViewIte
         recyclerView.setLayoutManager(gridLayoutManager);
 
         List<DemoModel> items = DemoProject.getDemoData();
-        adapter = new No1RecyclerViewAdapter(items);
+        adapter = new No1RecyclerViewAdapter(items, false, false);
         recyclerView.setAdapter(adapter);
 
         return v;
