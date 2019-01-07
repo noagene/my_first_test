@@ -26,6 +26,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
         btnRecyclerView = (Button) findViewById(R.id.btn_recycler_view);
         btnRecyclerView.setOnClickListener(this);
 
